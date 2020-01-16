@@ -103,6 +103,14 @@ def _invalid_number_alert(activity):
 
 
 def _extract_value(value):
+    try:
+        a,b = value.split('/')
+        value = float(a)/float(b)
+    except ZeroDivisionError:
+        value = 0
+    except ValueError:
+        value = float(Value)
+
     decimals_found = re.findall("\d+\.\d+", str(value))
     integers_found = re.findall("\d+", str(value))
 
